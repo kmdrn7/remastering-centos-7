@@ -1,0 +1,32 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "iso_url": "/home/kmdr7/Downloads/Compressed/CentOS-7-x86_64-DVD-1810.iso",
+      "iso_checksum": "6d44331cc4f6c506c7bbe9feb8468fad6c51a88ca1393ca6b8b486ea04bec3c1",
+      "iso_checksum_type": "sha256",
+      "vm_name": "Master Server",
+      "guest_os_type": "RedHat_64",
+      "ssh_username": "root",
+      "ssh_password": "master",
+      "ssh_wait_timeout": "10m",
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "1536"],
+        ["modifyvm", "{{.Name}}", "--cpus", "1"],
+        ["modifyvm", "{{.Name}}", "--audio", "none"]
+      ],
+      "disk_size": "20480",
+      "http_directory": "http",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart.cfg<enter><wait>"
+      ],
+      "shutdown_command": "/sbin/halt -p"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "output": "./box/centos-70-x64-{{.Provider}}-minimal.box"
+    }
+  ]
+}

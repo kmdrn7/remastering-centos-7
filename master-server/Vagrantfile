@@ -1,0 +1,17 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+	config.vm.box = "kae/centos70"
+	config.vm.box_url = "box/centos-70-x64-virtualbox-minimal.box"
+	config.vm.provider :virtualbox do |p|
+		p.customize ["modifyvm", :id, "--memory", 1536]
+		p.customize ["modifyvm", :id, "--cpus", 2]
+		p.customize ["modifyvm", :id, "--cpuexecutioncap", 50]
+	end
+	config.vm.hostname = "master-server"
+	config.ssh.username = "master"
+	config.ssh.password = "master"
+	config.vm.network "private_network", ip: "192.168.10.2"
+	config.vm.synced_folder ".", "/vagrant", disabled: true	
+	config.vm.provision "shell", path: "script/bootstrap.sh"
+end
