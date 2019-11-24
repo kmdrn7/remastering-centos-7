@@ -1,16 +1,19 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 Vagrant.configure("2") do |config|
-  config.vm.box = "kaemaa/centos70"
-  config.vm.box_url = "box/kaemaa-centos-70.box"
+  config.vm.box = "kaemaa/kaeluster-centos-7"
+  config.vm.box_url = "output/vagrant/kaeluster-centos-7.box"
+  config.vm.box_check_update = false
+  config.vbguest.auto_update = false
   config.vm.provider :virtualbox do |p|
     p.customize ["modifyvm", :id, "--memory", 2048]
     p.customize ["modifyvm", :id, "--cpus", 2]
   end
-  config.vm.hostname = "master-server"
+  config.vm.hostname = "kaeluster-server"
   config.ssh.username = "master"
   config.ssh.password = "master"
   config.vm.network "private_network", ip: "192.168.10.2"
+  config.vm.network "forwarded_port", guest: 3121, host: 3121
   config.vm.synced_folder ".", "home/vagrant", disabled: true
   config.vm.provision "shell", path: "script/bootstrap.sh"
 end

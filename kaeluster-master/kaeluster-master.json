@@ -5,20 +5,20 @@
       "iso_url": "/work/os/CentOS-7-x86_64-Minimal-1804.iso",
       "iso_checksum": "714acc0aefb32b7d51b515e25546835e55a90da9fb00417fbee2d03a62801efd",
       "iso_checksum_type": "sha256",
-      "vm_name": "Master Server",
+      "vm_name": "Kaeluster Master",
       "guest_os_type": "RedHat_64",
       "ssh_username": "root",
       "ssh_password": "master",
       "ssh_wait_timeout": "10m",
       "vboxmanage": [
         ["modifyvm", "{{.Name}}", "--memory", "2056"],
-        ["modifyvm", "{{.Name}}", "--cpus", "1"],
+        ["modifyvm", "{{.Name}}", "--cpus", "2"],
         ["modifyvm", "{{.Name}}", "--audio", "none"]
       ],
       "disk_size": "20480",
       "http_directory": "http",
       "guest_additions_mode": "disable",
-      "output_directory": "output/centos70",
+      "output_directory": "output/kaeluster-centos-7",
       "format": "ova",
       "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart.cfg<enter><wait>"
@@ -29,7 +29,7 @@
   "post-processors": [
     {
       "type": "vagrant",
-      "output": "./box/kaemaa-centos-70.box"
+      "output": "./output/vagrant/kaeluster-centos-7.box"
     }
   ]
 }
