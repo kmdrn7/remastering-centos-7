@@ -11,12 +11,15 @@
       "ssh_password": "master",
       "ssh_wait_timeout": "10m",
       "vboxmanage": [
-        ["modifyvm", "{{.Name}}", "--memory", "1536"],
+        ["modifyvm", "{{.Name}}", "--memory", "2056"],
         ["modifyvm", "{{.Name}}", "--cpus", "1"],
         ["modifyvm", "{{.Name}}", "--audio", "none"]
       ],
       "disk_size": "20480",
       "http_directory": "http",
+      "guest_additions_mode": "disable",
+      "output_directory": "output/centos70",
+      "format": "ova",
       "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart.cfg<enter><wait>"
       ],
@@ -26,7 +29,7 @@
   "post-processors": [
     {
       "type": "vagrant",
-      "output": "./box/centos-70-x64-{{.Provider}}-minimal.box"
+      "output": "./box/kaemaa-centos-70.box"
     }
   ]
 }

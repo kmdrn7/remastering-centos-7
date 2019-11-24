@@ -1,4 +1,4 @@
-master-server/packer-cache/*
+master-server/box
 master-server/packer-cache
-worker-server/packer-cache/*
+master-server/output/*
 worker-server/packer-cache
