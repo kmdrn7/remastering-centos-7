@@ -1,0 +1,49 @@
+{% extends "layouts/app.html" %}
+
+{% block content %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">{{ data.title }}</h1>
+        </div>
+        <!-- Content Row -->
+        <div class="row">
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-md-8">
+                <div class="card border-left-primary shadow h-100 py-1">
+                    <div class="card-body">
+                        <div class="terminal-container"></div>
+                        <!-- <iframe src="http://0.0.0.0:3121/dashboard/test" frameborder="0" class="terminal-frame"></iframe> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+{% endblock %}
+
+{% block script %}
+    <style>
+        .terminal-frame {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/socketio.js"></script>
+    <script>
+        let terminal = $('.terminal-container')
+        let socket = io.connect('http://0.0.0.0:3121', {
+            transports: ['websocket']
+        })
+
+        socket.on('connected', (msg) => {
+            alert('Connected: ' + msg)
+        })
+
+        socket.on('stdout', (stdout) => {
+            terminal.append(stdout)
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "layouts/app.html" %}
+
+{% block content %}
+	<div class="container-fluid">
+		<!-- Page Heading -->
+		<!-- <h1 class="h3 mb-3 text-gray-800">{{ data.title }}</h1> -->
+        <!-- DataTales Example -->
+        <div class="row">
+            <div class="col-md-7">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 text-right">
+                        <span class="float-left mt-2" style="font-weight: 600; font-size: 18px;">{{ data.title }}</span>
+                        <a href="/server" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp; Kembali</a>
+                    </div>
+                    <div class="card-body">
+                        <form action="/server/create" method="POST">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="">Nama Server</label>
+                                        <input type="text" name="nama_server" class="form-control" placeholder="" required>
+                                        <small class="text-muted">Masukkan nama server</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Username</label>
+                                        <input type="text" name="username" class="form-control" placeholder="" required>
+                                        <small class="text-muted">Masukkan username akun server</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Password</label>
+                                        <input type="text" name="password" class="form-control" placeholder="" required>
+                                        <small class="text-muted">Masukkan password akun server</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Ukuran Disk (GB)</label>
+                                        <input type="number" name="disk_size" class="form-control" placeholder="" required>
+                                        <small class="text-muted">Masukkan ukuran disk yang diinginkan</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <div class="form-group">
+                                        <label for="">&nbsp;</label><br>
+                                        <button type="submit" class="btn btn-primary" style="display: block; width: 100%;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp; Buat Server</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+	<!-- /.container-fluid -->
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
