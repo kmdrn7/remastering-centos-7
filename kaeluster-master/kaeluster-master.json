@@ -33,18 +33,12 @@
     },
     {
       "type": "file",
-      "source": "script/wordpress/config/conf.zip",
-      "destination": "/tmp/config/conf.zip"
+      "source": "script/wordpress/config/config.zip",
+      "destination": "/tmp/config/config.zip"
     },
     {
       "type": "shell",
       "script": "script/wordpress/wordpress-install.sh"
-    }
-  ],
-  "post-processors": [
-    {
-      "type": "vagrant",
-      "output": "./output/vagrant/kaeluster-centos-7.box"
     }
   ]
 }
