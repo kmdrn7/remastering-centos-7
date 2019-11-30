@@ -26,6 +26,21 @@
       "shutdown_command": "/sbin/halt -p"
     }
   ],
+  "provisioners" : [
+    {
+      "type": "shell",
+      "inline": ["mkdir /tmp/config"]
+    },
+    {
+      "type": "file",
+      "source": "script/wordpress/config/conf.zip",
+      "destination": "/tmp/config/conf.zip"
+    },
+    {
+      "type": "shell",
+      "script": "script/wordpress/wordpress-install.sh"
+    }
+  ],
   "post-processors": [
     {
       "type": "vagrant",
