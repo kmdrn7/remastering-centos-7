@@ -20,16 +20,16 @@ echo "- removing old configutation zip file"
 rm config.zip
 
 echo "========================================================="
-echo "#1 Installing NGINX Web Server =========================="
+echo "#1 Installing HTTPD Web Server =========================="
 echo "========================================================="
 sleep 2s
 echo "- adding public repository"
 yum -y install epel-release
-echo "- installing nginx"
+echo "- installing httpd"
 yum -y install httpd
 
 echo "========================================================="
-echo "#2 Enabling NGINX Web Server ============================"
+echo "#2 Enabling HTTPD Web Server ============================"
 echo "========================================================="
 sleep 2s
 systemctl start httpd
@@ -68,13 +68,13 @@ echo "- installing php plugin for wordpress"
 yum -y install php php-mysql php-gd php-xml php-mbstring php-opcache php-devel php-pear php-bcmath
 
 echo "========================================================="
-echo "#7 Setup MySQL Database for Wordpress ==================="
+echo "#5 Setup MySQL Database for Wordpress ==================="
 echo "========================================================="
 echo "- create user and database for wordpress"
 mysql -u root -proot < /tmp/config/setup.sql
 
 echo "========================================================="
-echo "#8 Downloading Latest Wordpress Instalation ============="
+echo "#6 Installing Latest Wordpress Instalation ============="
 echo "========================================================="
 cd /tmp/config
 echo "- extracting wordpress instalation files"
@@ -83,7 +83,7 @@ echo "- copying wordpress to nginx public folder"
 mv wordpress/* /var/www/html
 echo "- configuring wordpress"
 mv /tmp/config/wp-config.php /var/www/html/wp-config.php
-echo "- change wordpress folder owner to nginx"
+echo "- change wordpress folder owner to httpd apache"
 chown -R apache:apache /var/www/html
 
 echo "========================================================="
