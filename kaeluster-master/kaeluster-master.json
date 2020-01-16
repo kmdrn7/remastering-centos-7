@@ -40,5 +40,11 @@
       "type": "shell",
       "script": "script/wordpress/wordpress-install.sh"
     }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "output": "./output/vagrant/kaeluster-centos-7.box"
+    }
   ]
 }
